@@ -67,39 +67,48 @@ function renderForecast(card, data) {
   const lastUpdated = parseInt(cardLastUpdated);
 
   // If the data on the element is newer, skip the update.
-  if (lastUpdated >= data.currently.time) {
+  if (lastUpdated >= data.dt) {
     return;
   }
-  cardLastUpdatedElem.textContent = data.currently.time;
+  cardLastUpdatedElem.textContent = data.dt;
 
   // Render the forecast data into the card.
-  card.querySelector('.description').textContent = data.currently.summary;
+  card.querySelector('.location').textContent = data.name;
+  card.querySelector('.description').textContent = data.weather[0].description;
   const forecastFrom = luxon.DateTime
-      .fromSeconds(data.currently.time)
-      .setZone(data.timezone)
+      .fromSeconds(data.dt)
+      //.setZone(data.timezone)
       .toFormat('DDDD t');
   card.querySelector('.date').textContent = forecastFrom;
-  card.querySelector('.current .icon')
-      .className = `icon ${data.currently.icon}`;
+  
+  //card.querySelector('.current .icon').innerHTML =
+    //  .className = `icon ${data.currently.icon}`;
+      
   card.querySelector('.current .temperature .value')
-      .textContent = Math.round(data.currently.temperature);
+      .textContent = Math.round(data.main.temp-273);
+
+  card.querySelector('.current .pressure .value')
+      .textContent = Math.round(data.main.pressure);
+     
   card.querySelector('.current .humidity .value')
-      .textContent = Math.round(data.currently.humidity * 100);
+      .textContent = Math.round(data.main.humidity);
+      
   card.querySelector('.current .wind .value')
-      .textContent = Math.round(data.currently.windSpeed);
+      .textContent = Math.round(data.wind.speed);
   card.querySelector('.current .wind .direction')
-      .textContent = Math.round(data.currently.windBearing);
+      .textContent = Math.round(data.wind.deg);
   const sunrise = luxon.DateTime
-      .fromSeconds(data.daily.data[0].sunriseTime)
-      .setZone(data.timezone)
+      .fromSeconds(data.sys.sunrise)
+  //    .setZone(data.timezone)
       .toFormat('t');
   card.querySelector('.current .sunrise .value').textContent = sunrise;
   const sunset = luxon.DateTime
-      .fromSeconds(data.daily.data[0].sunsetTime)
-      .setZone(data.timezone)
+      .fromSeconds(data.sys.sunset)
+   //   .setZone(data.timezone)
       .toFormat('t');
   card.querySelector('.current .sunset .value').textContent = sunset;
 
+  /*
   // Render the next 7 days.
   const futureTiles = card.querySelectorAll('.future .oneday');
   futureTiles.forEach((tile, index) => {
@@ -115,6 +124,8 @@ function renderForecast(card, data) {
     tile.querySelector('.temp-low .value')
         .textContent = Math.round(forecast.temperatureLow);
   });
+
+  */
 
   // If the loading spinner is still visible, remove it.
   const spinner = card.querySelector('.card-spinner');
@@ -178,7 +189,7 @@ function getForecastCard(location) {
     return card;
   }
   const newCard = document.getElementById('weather-template').cloneNode(true);
-  newCard.querySelector('.location').textContent = location.label;
+ // newCard.querySelector('.location').textContent = location.label;
   newCard.setAttribute('id', id);
   newCard.querySelector('.remove-city')
       .addEventListener('click', removeLocation);
@@ -248,7 +259,8 @@ function loadLocationList() {
           lng: position.coords.longitude
         };
         
-        key = pos.lat+","+pos.lng;
+        key="lat="+pos.lat+"&lon="+pos.lng;
+        //key = pos.lat+","+pos.lng;
         console.log("key"+key);
         locations[key] = {label: "current", geo: key};
         
