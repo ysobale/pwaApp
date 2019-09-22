@@ -15,7 +15,7 @@ const OPEN_WEATHER_API="https://api.openweathermap.org/data/2.5/weather?APPID=b4
 
 
 function getForecast(req, resp) {
-    const location = req.params.location || '40.7720232,-73.9732319';
+    const location = req.params.location || '1.2796709,103.85641989999999';
     const url = `${BASE_URL}/${API_KEY}/${location}`;
     fetch(url).then((resp) => {
       if (resp.status !== 200) {

@@ -239,7 +239,7 @@ function loadLocationList() {
   if (!locations || Object.keys(locations).length === 0) {
     let key = '';
     locations = {};
-    locations[key] = {label: 'New York City', geo: '40.7720232,-73.9732319'};
+    locations[key] = {label: 'Singapore', geo: '1.2796709,103.85641989999999'};
 
     /*
     if (navigator.geolocation) {
