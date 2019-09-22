@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'static-cache-v2';
+const CACHE_NAME = 'static-cache-v1';
 const DATA_CACHE_NAME = 'data-cache-v1';
 
 
@@ -62,6 +62,7 @@ self.addEventListener('activate', (evt) => {
 
 self.addEventListener('fetch', (evt) => {
 
+  console.log('[Service Worker] Fetch called ');
 if (evt.request.url.includes('/forecast/')) {
   console.log('[Service Worker] Fetch (data)', evt.request.url);
   evt.respondWith(
@@ -80,7 +81,7 @@ if (evt.request.url.includes('/forecast/')) {
       }));
     return;
   }
-  evt.respondWith(
+evt.respondWith(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.match(evt.request)
           .then((response) => {

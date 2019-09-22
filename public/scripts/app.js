@@ -94,6 +94,21 @@ function renderForecast(card, data) {
       .toFormat('t');
   card.querySelector('.current .sunset .value').textContent = sunset;
 
+
+
+  const futureHourTiles = card.querySelectorAll('.futureHour .oneHour');
+  futureHourTiles.forEach((tile, index) => {
+    const forecast = data.hourly.data[index + 1];
+    const forecastFor = luxon.DateTime
+        .fromSeconds(forecast.time)
+        .setZone(data.timezone)
+        .toFormat('T');
+    tile.querySelector('.date').textContent = forecastFor;
+    tile.querySelector('.icon').className = `icon ${forecast.icon}`;
+    tile.querySelector('.temp .value')
+        .textContent = Math.round(forecast.temperature);
+  });
+
   // Render the next 7 days.
   const futureTiles = card.querySelectorAll('.future .oneday');
   futureTiles.forEach((tile, index) => {

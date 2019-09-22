@@ -366,18 +366,20 @@ body {
 
 .weather-card .future {
   display: flex;
+  flex-flow: column;
 }
 
 .weather-card .future .oneday {
   flex-grow: 1;
   text-align: center;
+
 }
 
 .weather-card .future .oneday .icon {
-  height: 64px;
+  height: 128px;
   margin-left: auto;
   margin-right: auto;
-  width: 64px;
+  width: 128px;
 }
 
 .weather-card .future .oneday .temp-high,
@@ -388,6 +390,34 @@ body {
 .weather-card .future .oneday .temp-low {
   color: #666;
 }
+
+
+.weather-card .futureHour {
+  display: flex;
+}
+
+.weather-card .futureHour .oneHour{
+  flex-grow: 1;
+  text-align: center;
+}
+
+.weather-card .futureHour .oneHour .icon {
+  height: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 64px;
+}
+
+.weather-card .futureHour .oneHour .temp-high,
+.weather-card .futureHour .oneHour .temp-low {
+  display: inline-block;
+}
+
+.weather-card .futureHour .oneHour .temp-low {
+  color: #666;
+}
+
+
 
 /**
  * Media query to adjust size of content for small screens
