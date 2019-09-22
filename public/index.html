@@ -30,9 +30,9 @@
 
       <main class="main">
 
-        <button id="butAdd" class="fab" aria-label="Add">
+        <!--button id="butAdd" class="fab" aria-label="Add">
           <span class="icon add"></span>
-        </button>
+        </button-->
     
 
       <div id="weather-template" class="weather-card" hidden>
@@ -41,6 +41,7 @@
             <circle cx="16" cy="16" r="14" fill="none"></circle>
           </svg>
         </div>
+        <button class="add-city">&times;</button>
         <button class="remove-city">&times;</button>
         <div class="city-key" hidden></div>
         <div class="card-last-updated" hidden></div>
@@ -153,11 +154,12 @@
           </div>
         </div>
       </div>
+      
     </main>
 
     <script src="/scripts/luxon-1.11.4.js"></script>
     <script src="/scripts/app.js"></script>
-
+    <script src="/scripts/install.js"></script>
     <script>
     
         if ('serviceWorker' in navigator) {

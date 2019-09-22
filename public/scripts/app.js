@@ -7,32 +7,21 @@ const weatherApp = {
 };
 
 /**
- * Toggles the visibility of the add location dialog box.
- */
-function toggleAddDialog() {
-  weatherApp.addDialogContainer.classList.toggle('visible');
-}
-
-/**
  * Event handler for butDialogAdd, adds the selected location to the list.
  */
-function addLocation() {
-  // Hide the dialog
-  toggleAddDialog();
+function addLocation(evt) {
+
+  const parent = evt.srcElement.parentElement;  
+  /*
   // Get the selected city
-  const select = document.getElementById('selectCityToAdd');
-  const selected = select.options[select.selectedIndex];
-  const geo = selected.value;
-  const label = selected.textContent;
-  const location = {label: label, geo: geo};
-  // Create a new card & get the weather data from the server
-  const card = getForecastCard(location);
-  getForecastFromNetwork(geo).then((forecast) => {
-    renderForecast(card, forecast);
-  });
+  const select = document.getElementById('city-key');
+
+
   // Save the updated list of selected cities.
   weatherApp.selectedLocations[geo] = location;
   saveLocationList(weatherApp.selectedLocations);
+  */
+
 }
 
 /**
@@ -287,8 +276,7 @@ function init() {
 
   // Set up the event handlers for all of the buttons.
   document.getElementById('butRefresh').addEventListener('click', updateData);
-//  document.getElementById('butAdd').addEventListener('click', toggleAddDialog);
-  
+
 }
 
 init();
