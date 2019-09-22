@@ -7,10 +7,33 @@ const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 
 const FORECAST_DELAY = 0;
 
+const API_KEY = '2234562266d18eb17ab92872548951bf';
+const BASE_URL = `https://api.darksky.net/forecast`;
+
+
 const OPEN_WEATHER_API="https://api.openweathermap.org/data/2.5/weather?APPID=b4b1026136685db15732f9d6b2e628ef&"
 
 
 function getForecast(req, resp) {
+    const location = req.params.location || '40.7720232,-73.9732319';
+    const url = `${BASE_URL}/${API_KEY}/${location}`;
+    fetch(url).then((resp) => {
+      if (resp.status !== 200) {
+        throw new Error(resp.statusText);
+      }
+      return resp.json();
+    }).then((data) => {
+      setTimeout(() => {
+        resp.json(data);
+      }, FORECAST_DELAY);
+    }).catch((err) => {
+      console.error('Dark Sky API Error:', err.message);
+      resp.json("");
+    });
+  }
+
+
+function getForecastOld(req, resp) {
     const location = req.params.location;
     const url = `${OPEN_WEATHER_API}${location}`;
     fetch(url).then((resp) => {
@@ -26,7 +49,7 @@ function getForecast(req, resp) {
       console.error('Openweather API Error ', err.message);
       resp.json("");
     });
-  }
+}
 
 
 
@@ -63,3 +86,4 @@ function startServer() {
 }
 
 startServer();
+
