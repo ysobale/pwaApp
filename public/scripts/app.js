@@ -203,6 +203,13 @@ function updateData() {
     const card = getForecastCard(location);
 
     console.log("getting the data for "+location);
+
+    getForecastFromCache(location.geo)
+    .then((forecast) => {
+      renderForecast(card, forecast);
+    });
+
+
     // Get the forecast data from the network.
     getForecastFromNetwork(location.geo)
         .then((forecast) => {
