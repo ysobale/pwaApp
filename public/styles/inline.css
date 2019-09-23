@@ -236,74 +236,6 @@ body {
 }
 
 /**
- * Add dialog
- */
-
-#addDialogContainer {
-  background: rgba(0, 0, 0, 0.57);
-  height: 100%;
-  left: 0;
-  opacity: 0;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1);
-  width: 100%;
-  will-change: opacity;
-}
-
-#addDialogContainer.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.dialog {
-  background: #fff;
-  border-radius: 2px;
-  box-shadow:
-    0 0 14px rgba(0, 0, 0, 0.24),
-    0 14px 28px rgba(0, 0, 0, 0.48);
-  left: 50%;
-  min-width: 280px;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%) translateY(30px);
-  transition: transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
-}
-
-.dialog > div {
-  padding-left: 24px;
-  padding-right: 24px;
-}
-
-.dialog-title {
-  font-size: 1.25em;
-  padding-top: 20px;
-}
-
-.dialog-body {
-  padding-bottom: 24px;
-  padding-top: 20px;
-}
-
-.dialog-body select {
-  width: 100%;
-}
-
-.dialog-buttons {
-  float: right;
-  padding-bottom: 16px;
-  padding-right: 17px !important;
-}
-
-.dialog .button {
-  background: transparent;
-  border: none;
-  font-size: 14px;
-  text-transform: uppercase;
-}
-
-/**
  * Weather forecast card
  */
 
@@ -319,6 +251,11 @@ body {
   padding: 16px;
   position: relative;
 }
+
+.weather-card .section-name {
+  font-size: 2.25em;
+}
+
 
 .weather-card .remove-city {
   background-color: transparent;

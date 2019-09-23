@@ -213,12 +213,11 @@ function updateData() {
       renderForecast(card, forecast);
     });
 
-
     // Get the forecast data from the network.
     getForecastFromNetwork(location.geo)
         .then((forecast) => {
           renderForecast(card, forecast);
-        });
+    });
   });
 }
 
