@@ -90,6 +90,11 @@ body {
   text-decoration: none;
 }
 
+
+.header .network-indicator {
+  background-color: green;
+}
+
 /**
  * Loading spinner
  */

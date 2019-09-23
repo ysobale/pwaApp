@@ -141,9 +141,11 @@ function renderForecast(card, data) {
 function getForecastFromNetwork(coords) {
   return fetch(`/forecast/${coords}`)
       .then((response) => {
+        renderForecast(card, forecast);
         return response.json();
       })
       .catch(() => {
+        document.getElementsByClassName('network-indicator')[0].style.backgroundColor = 'red';
         return null;
       });
 }
@@ -217,7 +219,12 @@ function updateData() {
     getForecastFromNetwork(location.geo)
         .then((forecast) => {
           renderForecast(card, forecast);
-    });
+    }).catch(() => {
+        document.getElementsByClassName(
+          'network-indicator'
+        )[0].style.backgroundColor = 'red';
+      });
+    
   });
 }
 
