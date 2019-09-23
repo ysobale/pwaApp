@@ -7,7 +7,6 @@ const DATA_CACHE_NAME = 'data-cache-v1';
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
-  '/manifest.json',
   '/scripts/app.js',
   '/scripts/install.js',
   '/scripts/luxon-1.11.4.js',
@@ -17,6 +16,7 @@ const FILES_TO_CACHE = [
   '/images/clear-night.svg',
   '/images/cloudy.svg',
   '/images/fog.svg',
+  '/images/favicon.ico',
   '/images/hail.svg',
   '/images/install.svg',
   '/images/partly-cloudy-day.svg',
@@ -64,6 +64,7 @@ self.addEventListener('activate', (evt) => {
 self.addEventListener('fetch', (evt) => {
 
   console.log('[Service Worker] Fetch called ');
+  
 if (evt.request.url.includes('/forecast/')) {
   console.log('[Service Worker] Fetch (data)', evt.request.url);
   evt.respondWith(

@@ -141,10 +141,10 @@ function renderForecast(card, data) {
 function getForecastFromNetwork(coords) {
   return fetch(`/forecast/${coords}`)
       .then((response) => {
-        renderForecast(card, forecast);
         return response.json();
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log("error1"+error)
         document.getElementsByClassName('network-indicator')[0].style.backgroundColor = 'red';
         return null;
       });
@@ -157,7 +157,9 @@ function getForecastFromNetwork(coords) {
  * @return {Object} The weather forecast, if the request fails, return null.
  */
 function getForecastFromCache(coords) {
+ 
   if (!('caches' in window)) {
+      console.log("caches not present !")
       return null;
   }
   const url = `${window.location.origin}/forecast/${coords}`;
@@ -219,12 +221,12 @@ function updateData() {
     getForecastFromNetwork(location.geo)
         .then((forecast) => {
           renderForecast(card, forecast);
-    }).catch(() => {
+    }).catch((error) => {
+        console.log("error2"+error)
         document.getElementsByClassName(
           'network-indicator'
         )[0].style.backgroundColor = 'red';
       });
-    
   });
 }
 
