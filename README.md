@@ -7,6 +7,8 @@ I have used the latitude and longtitude for accessing the DarkSky API.
 Single request to API gives current, hourly and daily forecast of the data. This also gives everything needed.
 https://darksky.net/dev/docs
 
+Luxon - Javascript library for datetime and other things
+
 
 Running the application -> take the checkout of the application from home directory install
 npm install
